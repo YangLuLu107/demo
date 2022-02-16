@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.IndexCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.IndexCode" >
+    <result column="BIGCLASS_CODE" property="bigclassCode" jdbcType="VARCHAR" />
+    <result column="BIGCLASS_NAME" property="bigclassName" jdbcType="VARCHAR" />
+    <result column="MIDDLECLASS_CODE" property="middleclassCode" jdbcType="VARCHAR" />
+    <result column="MIDDLECLASS_NAME" property="middleclassName" jdbcType="VARCHAR" />
+    <result column="SUBCLASS_CODE" property="subclassCode" jdbcType="VARCHAR" />
+    <result column="SUBCLASS_NAME" property="subclassName" jdbcType="VARCHAR" />
+    <result column="INDEX_CODE" property="indexCode" jdbcType="VARCHAR" />
+    <result column="INDEX_NAME" property="indexName" jdbcType="VARCHAR" />
+    <result column="INDEX_BREAKDOWN1" property="indexBreakdown1" jdbcType="VARCHAR" />
+    <result column="INDEX_BREAKDOWN2" property="indexBreakdown2" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="FREQUENCY" property="frequency" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="VARCHAR" />
+    <result column="SEQ_NO" property="seqNo" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getList" resultMap="BaseResultMap">
+    select * from t_ods_ind_code_test order by BIGCLASS_CODE, MIDDLECLASS_CODE, SUBCLASS_CODE
+  </select>
+
+  <select id="getBigclassNameList" resultType="java.lang.String">
+    select Distinct BIGCLASS_NAME AS bigclassName from t_ods_ind_code_test
+  </select>
+  <select id="getMidclassNameList" resultType="java.lang.String">
+    select Distinct MIDDLECLASS_NAME AS middleclassName from t_ods_ind_code_test
+  </select>
+  <select id="getSubclassNameList" resultType="java.lang.String">
+    select Distinct SUBCLASS_NAME AS subclassName from t_ods_ind_code_test
+  </select>
+
+  <delete id="delete">
+    delete from t_ods_ind_code_test_copy
+  </delete>
+
+  <insert id="insert" parameterType="com.example.pojo.IndexCode" >
+    insert into t_ods_ind_code_test_copy (BIGCLASS_CODE, BIGCLASS_NAME, MIDDLECLASS_CODE,
+      MIDDLECLASS_NAME, SUBCLASS_CODE, SUBCLASS_NAME, 
+      INDEX_CODE, INDEX_NAME, INDEX_BREAKDOWN1, 
+      INDEX_BREAKDOWN2, UNIT, FREQUENCY, 
+      FLAG, SEQ_NO, REMARK
+      )
+    values (#{bigclassCode,jdbcType=VARCHAR}, #{bigclassName,jdbcType=VARCHAR}, #{middleclassCode,jdbcType=VARCHAR}, 
+      #{middleclassName,jdbcType=VARCHAR}, #{subclassCode,jdbcType=VARCHAR}, #{subclassName,jdbcType=VARCHAR}, 
+      #{indexCode,jdbcType=VARCHAR}, #{indexName,jdbcType=VARCHAR}, #{indexBreakdown1,jdbcType=VARCHAR}, 
+      #{indexBreakdown2,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{frequency,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{seqNo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.IndexCode" >
+    insert into t_ods_ind_code_test
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bigclassCode != null" >
+        BIGCLASS_CODE,
+      </if>
+      <if test="bigclassName != null" >
+        BIGCLASS_NAME,
+      </if>
+      <if test="middleclassCode != null" >
+        MIDDLECLASS_CODE,
+      </if>
+      <if test="middleclassName != null" >
+        MIDDLECLASS_NAME,
+      </if>
+      <if test="subclassCode != null" >
+        SUBCLASS_CODE,
+      </if>
+      <if test="subclassName != null" >
+        SUBCLASS_NAME,
+      </if>
+      <if test="indexCode != null" >
+        INDEX_CODE,
+      </if>
+      <if test="indexName != null" >
+        INDEX_NAME,
+      </if>
+      <if test="indexBreakdown1 != null" >
+        INDEX_BREAKDOWN1,
+      </if>
+      <if test="indexBreakdown2 != null" >
+        INDEX_BREAKDOWN2,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="frequency != null" >
+        FREQUENCY,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+      <if test="seqNo != null" >
+        SEQ_NO,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bigclassCode != null" >
+        #{bigclassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bigclassName != null" >
+        #{bigclassName,jdbcType=VARCHAR},
+      </if>
+      <if test="middleclassCode != null" >
+        #{middleclassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="middleclassName != null" >
+        #{middleclassName,jdbcType=VARCHAR},
+      </if>
+      <if test="subclassCode != null" >
+        #{subclassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subclassName != null" >
+        #{subclassName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCode != null" >
+        #{indexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexName != null" >
+        #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexBreakdown1 != null" >
+        #{indexBreakdown1,jdbcType=VARCHAR},
+      </if>
+      <if test="indexBreakdown2 != null" >
+        #{indexBreakdown2,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null" >
+        #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNo != null" >
+        #{seqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
